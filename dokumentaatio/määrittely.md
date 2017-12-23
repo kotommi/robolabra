@@ -9,7 +9,5 @@ Laitteisto on lähinnä demokäyttöä varten mutta periaatteessa sen voisi skaa
 ## Suurpiirteiset hyväksymäkriteerit ohjelmalle / robotille. Miten hyvin robotin pitää suoriutua jostakin tehtävästä
 * Laitteisto pyörii niin kauan kuin halutaan.
 * Vähintään 95% tarkkuus yksivärisille ja simppelin muotoisille objekteille.
-* Ohjelmisto ei kaadu normaalissa käytössä ja se ilmoittaa erikoistilanteista (esim. error.log) 
-
-Mahdolliset lähteet
+* Ohjelmisto ei kaadu normaalissa käytössä ja se ilmoittaa erikoistilanteista (esim. error.log)
 
