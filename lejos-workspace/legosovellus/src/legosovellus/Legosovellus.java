@@ -1,9 +1,10 @@
 package legosovellus;
 
+import java.io.IOException;
+
 import lejos.nxt.*;
-import lejos.robotics.RegulatedMotor;
 import lejos.util.Delay;
-import lejos.io.*;
+import legosovellus.logiikka.*;
 
 /**
  * Example leJOS Project with an ant build file
@@ -11,32 +12,15 @@ import lejos.io.*;
  */
 public class Legosovellus {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		LCD.drawString("Testing", 0, 0);
-		aja(1080, true, 10000);
-		Delay.msDelay(1000);
-		aja(1080, false, 10000);
-		LCD.clearDisplay();
+		Tekoaly tekoaly = new Tekoaly();
+		tekoaly.testailua();
 		LCD.drawString("Press any button\nto exit", 0, 0);
 		Button.waitForPress();						
 	}
 	
 	
 	
-	public static void aja(int nopeus, boolean eteen, long aikaMillisekunteina) {
-		Motor.A.setSpeed(nopeus);
-		Motor.B.setSpeed(nopeus);
-		
-		if (eteen) {
-			Motor.A.forward();
-			Motor.B.backward();
-		} else {
-			Motor.A.backward();
-			Motor.B.forward();
-		}
-		
-		Delay.msDelay(aikaMillisekunteina);
-		Motor.A.stop();
-		Motor.B.stop();
-	}
+
 }
