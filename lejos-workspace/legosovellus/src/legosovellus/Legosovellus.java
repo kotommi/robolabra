@@ -7,7 +7,7 @@ import lejos.util.Delay;
 import legosovellus.logiikka.*;
 
 /**
- * Example leJOS Project with an ant build file
+ * Main-luokka sovelluksen käynnistämiseen. Saattaa sisältää jäännöksiä testailusta ja pähkinöistä
  *
  */
 public class Legosovellus {
