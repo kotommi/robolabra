@@ -4,7 +4,7 @@ import lejos.robotics.RegulatedMotor;
 import lejos.robotics.navigation.*;
 
 /**
- *
+ * Wrapperi differentialpilotin initialisointiin
  * @author tomko
  */
 public class Ohjain {
