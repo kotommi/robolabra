@@ -17,7 +17,9 @@ public class Tutka {
     /**
      *
      * @param portti
+     * Portti johon ultraäänisensori on kytketty
      * @param moottori
+     * Sensoria kääntävä moottori
      */
     public Tutka(SensorPort portti, RegulatedMotor moottori) {
         this.sensori = new UltrasonicSensor(portti);
@@ -32,6 +34,7 @@ public class Tutka {
     /**
      *
      * @param etaisyys
+     * Palauttaa true jos robotti on etäisyyden x päässä tai lähempänä seinästä
      * @return
      */
     public boolean onkoSeinassa(float etaisyys) {
@@ -39,8 +42,10 @@ public class Tutka {
     }
 
     /**
-     *
+     * Metodi kääntymistä varten. Pyörittää sensoria ja katsoo kummassa suunnassa on enemmän tilaa.
+     * Etäisyys mitataan 5 kertaa per suunta koska joskus sensori temppuilee eikä anna oikeaa lukemaa.
      * @return
+     * Palauttaa kääntymissuunnan asteina. 
      */
     public int valitseSuunta() {
         int[] oikea = new int[5];
@@ -49,6 +54,7 @@ public class Tutka {
         for (int i = 0; i < 5; i++) {
             int etaisyys = (int) sensori.getRange();
             oikea[i] = etaisyys;
+            Delay.msDelay(50);
         }
 
         //suunnanvaihto
@@ -58,6 +64,7 @@ public class Tutka {
         for (int i = 0; i < 5; i++) {
             int etaisyys = (int) sensori.getRange();
             vasen[i] = etaisyys;
+            Delay.msDelay(50)
         }
 
         int mediaaniOikea = Taulukot.mediaani(oikea);
