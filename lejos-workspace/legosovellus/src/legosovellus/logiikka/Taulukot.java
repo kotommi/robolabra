@@ -1,8 +1,12 @@
 package legosovellus.logiikka;
 
+/**
+ *
+ * @author tomko
+ */
 public class Taulukot {
 
-	public static int pienin(int[] taulukko) {
+    public static int pienin(int[] taulukko) {
         int pienin = taulukko[0];
         for (int i = 0; i < taulukko.length; i++) {
             if (taulukko[i] < pienin) {
@@ -48,17 +52,17 @@ public class Taulukot {
             vaihda(taulukko, indeksi, i);
         }
     }
-    
+
     public static int mediaani(int[] taulukko) {
-    	jarjesta(taulukko);
-    	return taulukko[taulukko.length / 2];
+        jarjesta(taulukko);
+        return taulukko[taulukko.length / 2];
     }
-    
+
     public static String toString(int[] taulukko) {
-    	StringBuilder sb = new StringBuilder();
-    	for (int i = 0; i < taulukko.length; i++) {
-    		sb.append("{" + taulukko[i] + "} ");
-    	}
-    	return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < taulukko.length; i++) {
+            sb.append("{").append(taulukko[i]).append("} ");
+        }
+        return sb.toString();
     }
 }
