@@ -1,43 +1,37 @@
 package legosovellus.logiikka;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-
+import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
-import lejos.nxt.UltrasonicSensor;
-import lejos.util.Delay;
 
 public class Tekoaly {
 
-	private UltrasonicSensor sensori;
+	private Ohjain ohjain;
+	private Tutka tutka;
 	
 	public Tekoaly() {
-		this.sensori = new UltrasonicSensor(SensorPort.S1);
-		
+		this.ohjain = new Ohjain(Motor.B, Motor.A);
+		this.tutka = new Tutka(SensorPort.S1, Motor.C);
 	}
 	
 	/**
 	 * testimetodi sensorin testailuun
-	 * @throws IOException 
-	 */
-	public void testailua() throws IOException {
-		File loki = new File("loki.log");
-		loki.createNewFile();
-		FileOutputStream fos = new FileOutputStream(loki);
-		OutputStreamWriter kirjoittaja = new OutputStreamWriter(fos);
+	*/
+	public void testailua()  {
 		
-		for (int i = 0; i < 10; i++) {
-			Ohjaus.kaanny(true, 90);
-			float etaisyys = sensori.getRange();
-			kirjoittaja.write(etaisyys + " , ");
-			Delay.msDelay(1000);
+		ohjain.getOhjain().forward();
+		while (true) {
+			if (tutka.onkoSeinassa(30f)) {
+				break;
+			}
 		}
-		
-		kirjoittaja.close();
-		
+		ohjain.getOhjain().stop();
+		int asteet = tutka.valitseSuunta();
+		ohjain.getOhjain().rotate(asteet);
 	}
+	
+
+	
+
 	
 	
 }
