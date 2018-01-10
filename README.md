@@ -6,5 +6,5 @@ Linkki videoon valmiista robotista soontm
 Lejos todo:add link
 Robjos, devauksen """"helpottamiseen""""
 ## Rakennusohjeet
-Hah saat paremman kun teet itse kolmen promillen humalassa
+tulee ehkä joskus
 
