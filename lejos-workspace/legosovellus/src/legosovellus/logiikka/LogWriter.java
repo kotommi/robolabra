@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 /**
- *
+ * Testausta helpottava tiilen muistille kirjoittava luokka.
+ * Muista kirjoittaja.close()
  * @author tomko
  */
 public class LogWriter {
