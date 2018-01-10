@@ -4,7 +4,7 @@ import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 
 /**
- *
+ * Pääluokka robotin toiminnalle. Sisältää tällä hetkellä lähinnä testimetodeja.
  * @author tomko
  */
 public class Tekoaly {
@@ -13,7 +13,7 @@ public class Tekoaly {
     private Tutka tutka;
 
     /**
-     *
+     * 
      */
     public Tekoaly() {
         this.ohjain = new Ohjain(Motor.B, Motor.A);
