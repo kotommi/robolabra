@@ -7,4 +7,6 @@ Lejos todo:add link
 Robjos, devauksen """"helpottamiseen""""
 ## Rakennusohjeet
 tulee ehkä joskus
+## Dokumentaatio
+[Linkki](https://github.com/kotommi/robolabra/tree/master/dokumentaatio)
 
