@@ -18,10 +18,10 @@ public class Tutka {
 
     /**
      *
-     * @param portti
-     * Portti johon ultraäänisensori on kytketty
-     * @param moottori
-     * Sensoria kääntävä moottori
+     * @param portti Portti johon ultraäänisensori on kytketty
+     * @param moottori Sensoria kääntävä moottori
+     * @param minEtaisyys Etaisyys jonka jälkeen robotti pysähtyy. Pitää olla
+     * tarpeeksi iso että robotti mahtuu kääntymään (>~20)
      */
     public Tutka(SensorPort portti, RegulatedMotor moottori, float minEtaisyys) {
         this.sensori = new UltrasonicSensor(portti);
@@ -30,10 +30,10 @@ public class Tutka {
         this.minEtaisyys = minEtaisyys;
         this.edellinen = -90;
     }
-    
+
     public UltrasonicSensor getSensori() {
-		return sensori;
-	}
+        return sensori;
+    }
 
     public void kaanna(int astetta) {
         moottori.rotate(astetta);
@@ -41,19 +41,18 @@ public class Tutka {
 
     /**
      *
-     * @param etaisyys
-     * Palauttaa true jos robotti on etäisyyden x päässä tai lähempänä seinästä
-     * @return
+     * @return palauttaa true jos robotti on minEtaisyys päässä seinästä
      */
     public boolean onkoSeinassa() {
         return this.minEtaisyys > sensori.getRange();
     }
 
     /**
-     * Metodi kääntymistä varten. Pyörittää sensoria ja katsoo kummassa suunnassa on enemmän tilaa.
-     * Etäisyys mitataan 5 kertaa per suunta koska joskus sensori temppuilee eikä anna oikeaa lukemaa.
-     * @return
-     * Palauttaa kääntymissuunnan asteina. 
+     * Metodi kääntymistä varten. Pyörittää sensoria ja katsoo kummassa
+     * suunnassa on enemmän tilaa. Etäisyys mitataan 5 kertaa per suunta koska
+     * joskus sensori temppuilee eikä anna oikeaa lukemaa.
+     *
+     * @return Palauttaa kääntymissuunnan asteina.
      */
     public int valitseSuunta() {
         int[] oikea = new int[5];
@@ -79,17 +78,17 @@ public class Tutka {
         int mediaaniVasen = Taulukot.mediaani(vasen);
         //takaisin alkuasentoon
         kaanna(90);
-        
+
         //umpikuja
         if (mediaaniOikea <= this.minEtaisyys && mediaaniVasen <= this.minEtaisyys) {
-        	return 180;
+            return 180;
         }
-        //kummassakin suunnassa tilaa
+        //kummassakin suunnassa tilaa, kääntyy eri suuntaan kuin edellisellä kerralla.
         if (mediaaniOikea > 100 && mediaaniVasen > 100) {
-        	this.edellinen = - this.edellinen;
-        	return this.edellinen;
+            this.edellinen = -this.edellinen;
+            return this.edellinen;
         }
-
+        // käänteiset asteet robotin rakenteen takia.
         if (mediaaniOikea > mediaaniVasen) {
             return -90;
         } else {
