@@ -18,9 +18,9 @@ public class Ohjain {
      */
     public Ohjain(RegulatedMotor leftMotor, RegulatedMotor rightMotor) {
         // Renkaan halkaisija senttimetreinä (5f), Takarenkaiden etäisyys toisistaan senttimetreinä (18.0f)
-        this.ohjain = new DifferentialPilot(5f, 18.0f, leftMotor, rightMotor, false);
-        ohjain.setTravelSpeed(30);
-        ohjain.setRotateSpeed(90);
+        this.ohjain = new DifferentialPilot(5.25f, 17f, leftMotor, rightMotor, false);
+        ohjain.setTravelSpeed(20);
+        ohjain.setRotateSpeed(45);
     }
 
     public DifferentialPilot getOhjain() {

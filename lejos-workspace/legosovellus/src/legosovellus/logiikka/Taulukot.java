@@ -1,7 +1,7 @@
 package legosovellus.logiikka;
 
 /**
- * Kirjasto taulukkojen käsittelyyn koska lejosista puuttuu java.util.arrays/collections
+ * Kirjasto taulukkojen käsittelyyn koska vanhasta lejosista puuttuu java.util.arrays/collections
  * @author tomko
  */
 public class Taulukot {

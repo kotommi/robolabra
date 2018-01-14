@@ -13,6 +13,8 @@ public class Tutka {
 
     private UltrasonicSensor sensori;
     private RegulatedMotor moottori;
+    private float minEtaisyys;
+    private int edellinen;
 
     /**
      *
@@ -21,11 +23,17 @@ public class Tutka {
      * @param moottori
      * Sensoria kääntävä moottori
      */
-    public Tutka(SensorPort portti, RegulatedMotor moottori) {
+    public Tutka(SensorPort portti, RegulatedMotor moottori, float minEtaisyys) {
         this.sensori = new UltrasonicSensor(portti);
         this.moottori = moottori;
         this.moottori.setSpeed(180);
+        this.minEtaisyys = minEtaisyys;
+        this.edellinen = -90;
     }
+    
+    public UltrasonicSensor getSensori() {
+		return sensori;
+	}
 
     public void kaanna(int astetta) {
         moottori.rotate(astetta);
@@ -37,8 +45,8 @@ public class Tutka {
      * Palauttaa true jos robotti on etäisyyden x päässä tai lähempänä seinästä
      * @return
      */
-    public boolean onkoSeinassa(float etaisyys) {
-        return etaisyys > sensori.getRange();
+    public boolean onkoSeinassa() {
+        return this.minEtaisyys > sensori.getRange();
     }
 
     /**
@@ -54,7 +62,7 @@ public class Tutka {
         for (int i = 0; i < 5; i++) {
             int etaisyys = (int) sensori.getRange();
             oikea[i] = etaisyys;
-            Delay.msDelay(50);
+            Delay.msDelay(20);
         }
 
         //suunnanvaihto
@@ -64,13 +72,23 @@ public class Tutka {
         for (int i = 0; i < 5; i++) {
             int etaisyys = (int) sensori.getRange();
             vasen[i] = etaisyys;
-            Delay.msDelay(50)
+            Delay.msDelay(20);
         }
 
         int mediaaniOikea = Taulukot.mediaani(oikea);
         int mediaaniVasen = Taulukot.mediaani(vasen);
         //takaisin alkuasentoon
         kaanna(90);
+        
+        //umpikuja
+        if (mediaaniOikea <= this.minEtaisyys && mediaaniVasen <= this.minEtaisyys) {
+        	return 180;
+        }
+        //kummassakin suunnassa tilaa
+        if (mediaaniOikea > 100 && mediaaniVasen > 100) {
+        	this.edellinen = - this.edellinen;
+        	return this.edellinen;
+        }
 
         if (mediaaniOikea > mediaaniVasen) {
             return -90;
