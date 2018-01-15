@@ -1,1 +1,6 @@
-# Todo
+# Testaus
+## Kääntyminen
+Kääntymisen tarkkuutta olen testannut asettamalla robotin lattialle suoran viivan päälle jonka jälkeen siinä on ajettu testiohjelmia jotka kääntävät robottia molempiin suuntiin 360 ja 4 x 90 astetta ja vertaamalla loppuasentoa alkuun. Tällä hetkellä käännöksissä tulee muutaman asteen heitto josta on vaikea päästä eroon.
+Kääntymisen vaatimaa tilaa on testattu asettamalla sensorille erilaisia minimietäisyysarvoja. Robotti on ensin ajanut suoraa seinää päin, jonka jälkeen se on kääntynyt 90 astetta ja ajanut seuraavaksi seinien muodostamaan kulmaan. Tällöin se on ollut sivuttaissuunnassa lähellä seinää mutta mahtunut kuitenkin kääntymään.
+## Sovelluslogiikka
+Erilaisten seinien väistelyä on kokeiltu käyttäen hyväksi talon rakenteita ja itse asetettuja esteitä ja seuraamalla robotin toimintaa eri tilanteissa. Tällä hetkellä robotti toimii hyvin kunhan se saapuu kääntymiskohtaan tarpeeksi lähellä 90 asteen kulmaa. 
